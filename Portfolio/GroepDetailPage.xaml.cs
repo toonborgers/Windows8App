@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Ioc;
 using Portfolio.Common;
+using Portfolio.Model;
 using Portfolio.ViewModel;
 
 namespace Portfolio
@@ -153,6 +154,17 @@ namespace Portfolio
             {
                 LeiderVerwijderenAppBarButton.IsEnabled = true;
             }
+        }
+
+        private void ProgrammaToevoegenDialog_OnBackButtonClicked(object sender, RoutedEventArgs e)
+        {
+            if (BottomAppBar != null) BottomAppBar.IsOpen = false;
+            ProgrammaToevoegenDialog.IsOpen = false;
+        }
+
+        private void ProgrammaToevoegen_Click(object sender, RoutedEventArgs e)
+        {
+            ProgrammaToevoegenDialog.IsOpen = true;
         }
     }
 }

@@ -108,7 +108,7 @@
     <Compile Include="Common\NavigationHelper.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
-    <Compile Include="DateConverter.cs" />
+    <Compile Include="Converter\DateTimeConverter.cs" />
     <Compile Include="GroepDetailPage.xaml.cs">
       <DependentUpon>GroepDetailPage.xaml</DependentUpon>
     </Compile>

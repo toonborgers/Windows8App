@@ -17,6 +17,19 @@ namespace Portfolio.Service
             return _programmas ?? (_programmas = await OpenOrCreateFileAndGetContents());
         }
 
+        public async Task<ObservableCollection<Programma>> GetProgrammasForGroep(Groep groep)
+        {
+            return new ObservableCollection<Programma>(from programma in await OpenOrCreateFileAndGetContents()
+                                                       where programma.Groep.Naam == groep.Naam
+                                                       orderby programma.Datum
+                                                       select programma);
+        }
+
+        public Task Add(Programma newProgramma)
+        {
+            _programmas.Add(newProgramma);
+            return WriteToFile();
+        }
 
         public async Task<DateTime> GetMostRecentDate()
         {
@@ -25,9 +38,9 @@ namespace Portfolio.Service
                 _programmas = await OpenOrCreateFileAndGetContents();
             }
             return (from programma in _programmas
-                where programma.Datum > DateTime.Now
-                orderby programma.Datum ascending
-                select programma.Datum)
+                    where programma.Datum > DateTime.Now
+                    orderby programma.Datum ascending
+                    select programma.Datum)
                 .FirstOrDefault();
         }
 
@@ -38,7 +51,7 @@ namespace Portfolio.Service
                 _programmas = await OpenOrCreateFileAndGetContents();
             }
             return from programma in _programmas
-                select programma.Datum;
+                   select programma.Datum;
         }
 
         protected override string GetFileName()

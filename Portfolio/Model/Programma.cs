@@ -1,41 +1,35 @@
 ﻿using System;
+using System.Linq;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Portfolio.Model
 {
     public class Programma
     {
-        private DateTime _datum;
-        private Groep _groep;
-        private string _tekst;
+        [JsonIgnore]
+        public DateTime Datum { get; set; }
+        [JsonIgnore]
+        public Groep Groep { get; set; }
+        [JsonProperty]
+        public String Tekst { get; set; }
+        [JsonProperty]
+        public string GroepNaam { get; set; }
+        [JsonProperty]
+        public long Ticks { get; set; }
 
-        public DateTime Datum
+        [OnDeserialized]
+        internal void InitGroep(StreamingContext context)
         {
-            get { return _datum; }
-            set
-            {
-                if (value == _datum) return;
-                _datum = value;
-            }
+            Groep = Groep.ALLE.FirstOrDefault(groep => groep.Naam == GroepNaam);
+            Datum = new DateTime(Ticks);
         }
 
-        public Groep Groep
+        [OnSerializing]
+        internal void InitGroepNaam(StreamingContext context)
         {
-            get { return _groep; }
-            set
-            {
-                if (value == _groep) return;
-                _groep = value;
-            }
-        }
-
-        public String Tekst
-        {
-            get { return _tekst; }
-            set
-            {
-                if (value == _tekst) return;
-                _tekst = value;
-            }
+            GroepNaam = Groep.Naam;
+            Ticks = Datum.Ticks;
         }
     }
 }
