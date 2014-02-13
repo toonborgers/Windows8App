@@ -1,0 +1,55 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converter="using:Portfolio.Converter">
+
+    <DataTemplate x:Key="LeidersDataTemplate">
+        <Border BorderBrush="LightGray" BorderThickness="2">
+            <Grid Width="400">
+                <TextBlock HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           FontSize="20"
+                           Padding="5"
+                           Text="{Binding Naam}"
+                           TextAlignment="Left" />
+
+                <Image Width="50"
+                       Height="50"
+                       Margin="0 0 31 0"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Stretch="Uniform">
+                    <Image.Source>
+                        <BitmapImage UriSource="{Binding FotoUri}" />
+                    </Image.Source>
+                </Image>
+
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate x:Key="ProgrammaDataTemplate">
+        <Border BorderBrush="LightGray" BorderThickness="2">
+            <Grid Width="400">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Padding="5" Text="{Binding Datum, Converter={StaticResource DateTimeToStringConverter}}" />
+                    <TextBlock Padding="5" Text="{Binding Tekst}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+    <Style x:Key="FlyoutTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="5" />
+    </Style>
+    <Style x:Key="FlyoutTextBoxStyle" TargetType="TextBox">
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Grid.Column" Value="1" />
+    </Style>
+
+    <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+    <converter:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
+</ResourceDictionary>

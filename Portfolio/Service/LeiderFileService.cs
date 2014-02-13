@@ -13,8 +13,8 @@ namespace Portfolio.Service
         public async Task<ObservableCollection<Leider>> GetLeidersForGroep(Groep groep)
         {
             _leiders = new ObservableCollection<Leider>(from leider in await OpenOrCreateFileAndGetContents()
-                where leider.Groep.Naam == groep.Naam
-                select leider);
+                                                        where leider.Groep.Naam == groep.Naam
+                                                        select leider);
 
             return _leiders;
         }
@@ -24,10 +24,10 @@ namespace Portfolio.Service
             _leiders.Add(newLeider);
             return WriteToFile();
         }
-
-        public Task Remove(Leider leider)
+            
+        public Task Remove(Leider leiderToRemove)
         {
-            _leiders.Remove(leider);
+            _leiders.Remove(leiderToRemove);
             return WriteToFile();
         }
 

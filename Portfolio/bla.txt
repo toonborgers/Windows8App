@@ -1,9 +1,0 @@
-Main grid: 
-	[x] Alle groepen met logo
-	[] kalender
-	[] Contact/huren
-	[] programmas
-
-Doorklikken naar groep: 
-	[] leiders
-	[] fotos

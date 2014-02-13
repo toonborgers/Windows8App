@@ -25,6 +25,7 @@ namespace Portfolio.ViewModel
             SaveNewLeiderCommand = new RelayCommand(SaveNewLeider);
             RemoveLeiderCommand = new RelayCommand(RemoveSelectedLeider);
             SaveNewProgrammaCommand = new RelayCommand(SaveNewProgramma);
+            RemoveProgrammaCommand = new RelayCommand(RemoveSelectedProgramma);
 
             LeiderToevoegenDisplayOpen = false;
             ProgrammaToevoegenDisplayOpen = false;
@@ -39,6 +40,8 @@ namespace Portfolio.ViewModel
         public ICommand SaveNewLeiderCommand { get; private set; }
         public ICommand RemoveLeiderCommand { get; private set; }
         public ICommand SaveNewProgrammaCommand { get; private set; }
+        public ICommand RemoveProgrammaCommand { get; private set; }
+        public Programma SelectedProgramma { get; set; }
         public Leider SelectedLeider { get; set; }
         public Boolean LeiderToevoegenDisplayOpen { get; private set; }
         public Boolean ProgrammaToevoegenDisplayOpen { get; private set; }
@@ -64,11 +67,11 @@ namespace Portfolio.ViewModel
         private async void SaveNewLeider()
         {
             await _leiderService.Add(LeiderUnderCreation);
-            LeiderUnderCreation.FotoUri = Groep.ImageLocation;
-            LeiderUnderCreation.Naam = string.Empty;
+            LeiderUnderCreation = new Leider { Groep = Groep, FotoUri = Groep.ImageLocation };
             LeiderToevoegenDisplayOpen = false;
             RaisePropertyChanged(() => Leiders);
             RaisePropertyChanged(() => LeiderToevoegenDisplayOpen);
+            RaisePropertyChanged(() => LeiderUnderCreation);
             CloseCommandBar();
         }
 
@@ -77,17 +80,29 @@ namespace Portfolio.ViewModel
             if (SelectedLeider == null) return;
             await _leiderService.Remove(SelectedLeider);
             RaisePropertyChanged(() => Leiders);
-            SelectedLeider = new Leider { Groep = Groep, FotoUri = Groep.ImageLocation };
+            SelectedLeider = null;
             CloseCommandBar();
         }
 
         private async void SaveNewProgramma()
         {
             await _programmaService.Add(ProgrammaUnderCreation);
-            ProgrammaUnderCreation.Datum = DateTime.Now;
-            ProgrammaUnderCreation.Tekst = string.Empty;
+            Programmas = await _programmaService.GetProgrammasForGroep(Groep);
+            ProgrammaUnderCreation = new Programma() { Groep = Groep, Datum = DateTime.Now, Tekst = String.Empty }; ;
             ProgrammaToevoegenDisplayOpen = false;
             RaisePropertyChanged(() => ProgrammaToevoegenDisplayOpen);
+            RaisePropertyChanged(() => Programmas);
+            RaisePropertyChanged(() => ProgrammaUnderCreation);
+            CloseCommandBar();
+        }
+
+        private async void RemoveSelectedProgramma()
+        {
+            if (SelectedProgramma == null) return;
+            await _programmaService.Remove(SelectedProgramma);
+            SelectedProgramma = null;
+            Programmas = await _programmaService.GetProgrammasForGroep(Groep);
+            RaisePropertyChanged(() => Programmas);
             CloseCommandBar();
         }
 

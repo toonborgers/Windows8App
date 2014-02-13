@@ -17,8 +17,8 @@ namespace Portfolio.Service
 
         protected async Task<ObservableCollection<T>> OpenOrCreateFileAndGetContents()
         {
-            StorageFile file = await OpenFileAsync();
-            string fileContents = string.Empty;
+            var file = await OpenFileAsync();
+            var fileContents = string.Empty;
             if (file != null)
             {
                 fileContents = await FileIO.ReadTextAsync(file);
@@ -38,9 +38,9 @@ namespace Portfolio.Service
         {
             return Task.Run(async () =>
             {
-                string JSON = JsonConvert.SerializeObject(GetItems());
-                StorageFile file = await OpenFileAsync();
-                await FileIO.WriteTextAsync(file, JSON);
+                var json = JsonConvert.SerializeObject(GetItems());
+                var file = await OpenFileAsync();
+                await FileIO.WriteTextAsync(file, json);
             });
         }
     }

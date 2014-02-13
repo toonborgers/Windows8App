@@ -30,5 +30,30 @@ namespace Portfolio.Model
         {
             GroepNaam = Groep.Naam;
         }
+
+        protected bool Equals(Leider other)
+        {
+            return string.Equals(Naam, other.Naam) && string.Equals(FotoUri, other.FotoUri) && Equals(Groep, other.Groep) && string.Equals(GroepNaam, other.GroepNaam);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Leider) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (Naam != null ? Naam.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (FotoUri != null ? FotoUri.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (Groep != null ? Groep.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (GroepNaam != null ? GroepNaam.GetHashCode() : 0);
+                return hashCode;
+            }
+        }
     }
 }

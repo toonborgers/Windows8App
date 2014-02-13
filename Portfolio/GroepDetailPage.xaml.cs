@@ -20,24 +20,16 @@ namespace Portfolio
     /// </summary>
     public sealed partial class GroepDetailPage : Page
     {
-        private readonly ObservableDictionary defaultViewModel = new ObservableDictionary();
-        private readonly NavigationHelper navigationHelper;
+        private readonly NavigationHelper _navigationHelper;
 
         public GroepDetailPage()
         {
             InitializeComponent();
-            navigationHelper = new NavigationHelper(this);
-            navigationHelper.LoadState += navigationHelper_LoadState;
-            navigationHelper.SaveState += navigationHelper_SaveState;
+            _navigationHelper = new NavigationHelper(this);
+            _navigationHelper.LoadState += navigationHelper_LoadState;
+            _navigationHelper.SaveState += navigationHelper_SaveState;
         }
 
-        /// <summary>
-        ///     This can be changed to a strongly typed view model.
-        /// </summary>
-        public ObservableDictionary DefaultViewModel
-        {
-            get { return defaultViewModel; }
-        }
 
         /// <summary>
         ///     NavigationHelper is used on each page to aid in navigation and
@@ -45,7 +37,7 @@ namespace Portfolio
         /// </summary>
         public NavigationHelper NavigationHelper
         {
-            get { return navigationHelper; }
+            get { return _navigationHelper; }
         }
 
 
@@ -138,22 +130,19 @@ namespace Portfolio
         /// in addition to page state preserved during an earlier session.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            navigationHelper.OnNavigatedTo(e);
+            _navigationHelper.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            navigationHelper.OnNavigatedFrom(e);
+            _navigationHelper.OnNavigatedFrom(e);
         }
 
         #endregion
 
         private void Leiders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count > 0)
-            {
-                LeiderVerwijderenAppBarButton.IsEnabled = true;
-            }
+            LeiderVerwijderenAppBarButton.IsEnabled = (sender as ListView).SelectedItems.Count > 0;
         }
 
         private void ProgrammaToevoegenDialog_OnBackButtonClicked(object sender, RoutedEventArgs e)
@@ -165,6 +154,11 @@ namespace Portfolio
         private void ProgrammaToevoegen_Click(object sender, RoutedEventArgs e)
         {
             ProgrammaToevoegenDialog.IsOpen = true;
+        }
+
+        private void Programmas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ProgrammaVerwijderenAppBarButton.IsEnabled = (sender as ListView).SelectedItems.Count > 0;
         }
     }
 }

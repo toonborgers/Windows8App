@@ -108,7 +108,8 @@
     <Compile Include="Common\NavigationHelper.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
-    <Compile Include="Converter\DateTimeConverter.cs" />
+    <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
+    <Compile Include="Converter\DateTimeToStringConverter.cs" />
     <Compile Include="GroepDetailPage.xaml.cs">
       <DependentUpon>GroepDetailPage.xaml</DependentUpon>
     </Compile>
@@ -148,7 +149,6 @@
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
-    <Content Include="bla.txt" />
     <Content Include="Common\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +158,11 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\GroepDetailResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="GroepDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

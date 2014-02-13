@@ -16,8 +16,6 @@ namespace Portfolio.ViewModel
 
         private Groep _selectedGroep;
 
-        private DateTime _selectedProgrammaDate;
-
         public MainPageViewModel(NavigationService navigationService, IProgrammaService programmaService)
         {
             _navigationService = navigationService;
@@ -34,28 +32,14 @@ namespace Portfolio.ViewModel
             {
                 if (_selectedGroep == value) return;
                 Messenger.Default.Send(new GroepMessage(value));
-                _navigationService.Navigate(typeof (GroepDetailPage));
+                _navigationService.Navigate(typeof(GroepDetailPage));
                 RaisePropertyChanged();
             }
         }
 
-        public DateTime SelectedProgramaDate
-        {
-            get { return _selectedProgrammaDate; }
-            set
-            {
-                _selectedProgrammaDate = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public IEnumerable<DateTime> PossibleProgrammaDates { get; private set; }
-
-        private async void Initialize()
+        private void Initialize()
         {
             Groepen = Groep.ALLE;
-            _selectedProgrammaDate = await _programmaService.GetMostRecentDate();
-            PossibleProgrammaDates = await _programmaService.GetPossibleDates();
         }
     }
 }

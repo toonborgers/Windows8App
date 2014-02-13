@@ -13,40 +13,7 @@
       mc:Ignorable="d">
 
     <Page.Resources>
-        <DataTemplate x:Key="LeidersDataTemplate">
-            <Border BorderBrush="LightGray" BorderThickness="2">
-                <StackPanel Width="400" Orientation="Horizontal">
-                    <TextBlock Width="330"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               FontSize="20"
-                               Padding="5"
-                               Text="{Binding Naam}"
-                               TextAlignment="Left" />
-                    <Image Width="50"
-                           Height="50"
-                           VerticalAlignment="Center"
-                           Stretch="UniformToFill">
-                        <Image.Source>
-                            <BitmapImage UriSource="{Binding FotoUri}" />
-                        </Image.Source>
-                    </Image>
-                </StackPanel>
-            </Border>
-        </DataTemplate>
-
-        <Style x:Key="FlyoutTextBlockStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Margin" Value="5" />
-        </Style>
-        <Style x:Key="FlyoutTextBoxStyle" TargetType="TextBox">
-            <Setter Property="Margin" Value="5" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Grid.Column" Value="1" />
-        </Style>
-        <converters:DateTimeConverter x:Key="DateTimeConverter" />
+        <ResourceDictionary Source="Resources/GroepDetailResources.xaml" />
     </Page.Resources>
 
     <Page.BottomAppBar>
@@ -63,6 +30,11 @@
                 <AppBarSeparator />
                 <AppBarButton Click="ProgrammaToevoegen_Click">
                     <PathIcon Data="M10,18.4210529327393L10,22.6315803527832 14.2105264663696,22.6315803527832 14.2105264663696,18.4210529327393 10,18.4210529327393z M16.3157386779785,18.4210529327393L16.3157386779785,22.6315803527832 29.9998970031738,22.6315803527832 29.9999485015869,18.4210529327393 16.3157386779785,18.4210529327393z M16.3157901763916,16.8421058654785L30.0000019073486,16.8421058654785 30.0000019073486,12.6315793991089 16.3157901763916,12.6315793991089 16.3157901763916,16.8421058654785z M16.8421058654785,16.3157901763916L16.8421058654785,13.1578950881958 29.4736862182617,13.1578950881958 29.4736862182617,16.3157901763916 16.8421058654785,16.3157901763916z M11.0526323318481,17.3684215545654L13.1578950881958,17.3684215545654 13.1578950881958,15.7894744873047 14.7368431091309,15.7894744873047 14.7368431091309,13.6842107772827 13.1578950881958,13.6842107772827 13.1578950881958,12.105263710022 11.0526323318481,12.105263710022 11.0526323318481,13.6842107772827 9.47368431091309,13.6842107772827 9.47368431091309,15.7894744873047 11.0526323318481,15.7894744873047 11.0526323318481,17.3684215545654z M11.5789480209351,16.8421058654785L11.5789480209351,15.2631587982178 10,15.2631587982178 10,14.2105264663696 11.5789480209351,14.2105264663696 11.5789480209351,12.6315793991089 12.6315793991089,12.6315793991089 12.6315793991089,14.2105264663696 14.2105264663696,14.2105264663696 14.2105264663696,15.2631587982178 12.6315793991089,15.2631587982178 12.6315793991089,16.8421058654785 11.5789480209351,16.8421058654785z M10.0000524520874,24.2105274200439L10.0000524520874,28.4210529327393 14.210578918457,28.4210529327393 14.210578918457,24.2105274200439 10.0000524520874,24.2105274200439z M16.3158416748047,24.2105274200439L16.3158416748047,28.4210529327393 30.0000019073486,28.4210529327393 30.0000019073486,24.2105274200439 16.3158416748047,24.2105274200439z" />
+                </AppBarButton>
+                <AppBarButton x:Name="ProgrammaVerwijderenAppBarButton"
+                              Command="{Binding RemoveProgrammaCommand}"
+                              IsEnabled="False">
+                    <PathIcon Data="M16.7821063995361,29.3008441925049L18.6429481506348,27.4400539398193 16.7821063995361,25.5792102813721 18.1392116546631,24.2221584320068 20,26.0829467773438 21.8607902526855,24.2221584320068 23.2178421020508,25.5792102813721 21.3570537567139,27.4400024414063 23.2178955078125,29.3008441925049 21.8607902526855,30.6578960418701 20,28.7971057891846 18.1392116546631,30.6578960418701 16.7821063995361,29.3008441925049z M10,12.105263710022L14.2105264663696,12.105263710022 14.2105264663696,16.3157901763916 10,16.3157901763916 10,12.105263710022z M16.3157386779785,12.1054210662842L29.9998416900635,12.1054210662842 29.9998416900635,16.3159484863281 16.3157386779785,16.3159484863281 16.3157386779785,12.1054210662842z M10,17.8947372436523L14.2105264663696,17.8947372436523 14.2105264663696,22.1052646636963 10,22.1052646636963 10,17.8947372436523z M10.5263156890869,18.4210529327393L10.5263156890869,21.5789489746094 13.6842107772827,21.5789489746094 13.6842107772827,18.4210529327393 10.5263156890869,18.4210529327393z M11.0526323318481,18.9473686218262L13.1578950881958,18.9473686218262 13.1578950881958,21.0526313781738 11.0526323318481,21.0526313781738 11.0526323318481,18.9473686218262z M16.3157901763916,17.8947372436523L30.0000019073486,17.8947372436523 30.0000019073486,22.1052646636963 16.3157901763916,22.1052646636963 16.3157901763916,17.8947372436523z" />
                 </AppBarButton>
             </CommandBar.PrimaryCommands>
         </CommandBar>
@@ -109,20 +81,24 @@
         <Hub Grid.Row="1">
             <HubSection Header="Programmas">
                 <DataTemplate>
-                    <ListView ItemsSource="{Binding Programmas}" />
+                    <ListView Name="Progammas"
+                              ItemTemplate="{StaticResource ProgrammaDataTemplate}"
+                              ItemsSource="{Binding Programmas}"
+                              SelectedItem="{Binding SelectedProgramma,
+                                                     Mode=TwoWay}"
+                              SelectionChanged="Programmas_SelectionChanged"
+                              SelectionMode="Single" />
                 </DataTemplate>
             </HubSection>
             <HubSection Header="Leiders">
                 <DataTemplate>
-                    <StackPanel>
-                        <ListView Width="400"
-                                  ItemTemplate="{StaticResource LeidersDataTemplate}"
-                                  ItemsSource="{Binding Leiders}"
-                                  SelectedItem="{Binding SelectedLeider,
-                                                         Mode=TwoWay}"
-                                  SelectionChanged="Leiders_SelectionChanged"
-                                  SelectionMode="Single" />
-                    </StackPanel>
+                    <ListView Name="Leiders"
+                              ItemTemplate="{StaticResource LeidersDataTemplate}"
+                              ItemsSource="{Binding Leiders}"
+                              SelectedItem="{Binding SelectedLeider,
+                                                     Mode=TwoWay}"
+                              SelectionChanged="Leiders_SelectionChanged"
+                              SelectionMode="Single" />
                 </DataTemplate>
             </HubSection>
         </Hub>
@@ -174,7 +150,7 @@
                            Style="{StaticResource FlyoutTextBlockStyle}"
                            Text="Datum"
                            TextAlignment="Center" />
-                <DatePicker HorizontalAlignment="Center" Date="{Binding ProgrammaUnderCreation.Datum, Mode=TwoWay, Converter={StaticResource DateTimeConverter}}" />
+                <DatePicker HorizontalAlignment="Center" Date="{Binding ProgrammaUnderCreation.Datum, Mode=TwoWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}" />
                 <TextBlock HorizontalAlignment="Center"
                            Style="{StaticResource FlyoutTextBlockStyle}"
                            Text="Tekst"
