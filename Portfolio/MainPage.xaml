@@ -31,7 +31,7 @@
         </DataTemplate>
 
         <Style x:Key="GroepenStyle" TargetType="GridViewItem">
-            <Setter Property="Width" Value="350" />
+            <Setter Property="Width" Value="500" />
             <Setter Property="Height" Value="300" />
             <Setter Property="Background" Value="#FF939598" />
         </Style>
@@ -78,7 +78,7 @@
         <Hub Grid.Row="1">
             <HubSection Header="Groepen">
                 <DataTemplate>
-                    <GridView Width="1075"
+                    <GridView Width="1530"
                               FlowDirection="LeftToRight"
                               ItemContainerStyle="{StaticResource GroepenStyle}"
                               ItemTemplate="{StaticResource GroepenDataTemplate}"
