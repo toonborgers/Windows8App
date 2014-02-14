@@ -40,6 +40,7 @@ namespace Portfolio.ViewModel
             {
                 SimpleIoc.Default.Register<IProgrammaService, ProgrammaFileService>();
                 SimpleIoc.Default.Register<ILeiderService, LeiderFileService>();
+                SimpleIoc.Default.Register<IKalenderEventService, KalenderEventFileService>();
             }
 
             SimpleIoc.Default.Register<NavigationService>();

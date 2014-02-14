@@ -7,49 +7,49 @@ namespace Portfolio.Model
 {
     public class Groep
     {
-        public static Groep Sloebers = new Groep
+        private static readonly Groep Sloebers = new Groep
         {
             Naam = "Sloebers",
-            Kleur = new SolidColorBrush(Color.FromArgb(150, 128, 0, 128)),
+            Kleur = new SolidColorBrush(Color.FromArgb(180, 128, 0, 128)),
             ImageLocation = "ms-appx:///Assets/Groepen/sloebers.png"
         };
 
-        public static Groep Speelclub = new Groep
+        private static readonly Groep Speelclub = new Groep
         {
             Naam = "Speelclub",
-            Kleur = new SolidColorBrush(Color.FromArgb(150, 255, 255, 0)),
+            Kleur = new SolidColorBrush(Color.FromArgb(180, 255, 255, 0)),
             ImageLocation = "ms-appx:///Assets/Groepen/speelclub.png"
         };
 
-        public static Groep Rakkers = new Groep
+        private static readonly Groep Rakkers = new Groep
         {
             Naam = "Rakkers",
-            Kleur = new SolidColorBrush(Color.FromArgb(150, 0, 128, 0)),
+            Kleur = new SolidColorBrush(Color.FromArgb(180, 0, 128, 0)),
             ImageLocation = "ms-appx:///Assets/Groepen/rakkers.png"
         };
 
-        public static Groep Toppers = new Groep
+        private static readonly Groep Toppers = new Groep
         {
             Naam = "Toppers",
-            Kleur = new SolidColorBrush(Color.FromArgb(150, 255, 0, 0)),
+            Kleur = new SolidColorBrush(Color.FromArgb(180, 255, 0, 0)),
             ImageLocation = "ms-appx:///Assets/Groepen/toppers.png"
         };
 
-        public static Groep Kerels = new Groep
+        private static readonly Groep Kerels = new Groep
         {
             Naam = "Kerels",
-            Kleur = new SolidColorBrush(Color.FromArgb(150, 0, 0, 255)),
+            Kleur = new SolidColorBrush(Color.FromArgb(180, 0, 0, 255)),
             ImageLocation = "ms-appx:///Assets/Groepen/kerels.png"
         };
 
-        public static Groep Aspiranten = new Groep
+        private static readonly Groep Aspiranten = new Groep
         {
             Naam = "Aspiranten",
-            Kleur = new SolidColorBrush(Color.FromArgb(150, 255, 165, 0)),
+            Kleur = new SolidColorBrush(Color.FromArgb(180, 255, 165, 0)),
             ImageLocation = "ms-appx:///Assets/Groepen/aspiranten.png"
         };
 
-        public static IList<Groep> ALLE = new List<Groep>
+        public static readonly IList<Groep> ALLE = new List<Groep>
         {
             Sloebers,
             Speelclub,
